@@ -1,0 +1,11 @@
+<div class="btn-container">
+  <button class="btn" (click)="addNewRecipe()">new recipe</button>
+</div>
+
+<section class="recipe__grid content--center">
+  <app-recipe-item
+    *ngFor="let recipe of recipes; let i = index"
+    [recipe]="recipe"
+    [index]="i"
+  ></app-recipe-item>
+</section>

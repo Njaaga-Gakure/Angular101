@@ -1,27 +1,98 @@
 # 0x02RecipeApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
+### App Routing Steps
 
-## Development server
+- create a routing module i.e file named `app-routing.module.ts`. It can be named whatever you like
+- Create a typescript class and add the `@NgModule` decorator to convert it to a module
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+        import { NgModule } from "@angular/core";
 
-## Code scaffolding
+        @NgModule({
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+        })
+        export class AppRoutingModule {
 
-## Build
+        }
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Adding a Route
 
-## Running unit tests
+        import { NgModule } from '@angular/core';
+        import { RouterModule, Routes } from '@angular/router';
+        import { RecipesComponent } from './recipes/recipes.component';
+        import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+        const appRoutes: Routes = [
+        { path: '', redirectTo: '/recipes' },
+        {
+            path: 'recipes',
+            component: RecipesComponent,
+        },
+        {
+            path: 'shopping-list',
+            component: ShoppingListComponent,
+        },
+        ];
 
-## Running end-to-end tests
+        @NgModule({
+        imports: [RouterModule.forRoot(appRoutes)],
+        exports: [RouterModule],
+        })
+        export class AppRoutingModule {}
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- export the configured `RouterModule`
+- import it in the main module i.e, `app.module.ts` i.e,
 
-## Further help
+        @NgModule({
+        imports: [AppRoutingModule]
+        })
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Configuring the Outlet
+
+- Mark where the components should be conditionally rendered:
+
+        <div class="app-container">
+            <app-header (linkChangeEmitter)="onLinkClicked($event)"></app-header>
+            <main class="main">
+                <router-outlet></router-outlet>
+            </main>
+        </div>
+
+### Configure Links
+
+        <ul class="nav__links">
+            <li routerLinkActive="nav__link--active" class="nav__link">
+                <a routerLink="/recipes">recipes</a>
+            </li>
+            <li routerLinkActive="nav__link--active" class="nav__link">
+                <a routerLink="/shopping-list">shopping list</a>
+            </li>
+        </ul>
+
+### Child Routes
+
+        const appRoutes: Routes = [
+        { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+        {
+            path: 'recipes',
+            component: RecipesComponent,
+            children: [
+            { path: '', component: RecipeInitComponent },
+            { path: ':id', component: RecipeDetailComponent },
+            ],
+        },
+        {
+            path: 'shopping-list',
+            component: ShoppingListComponent,
+        },
+        ];
+
+##### Usage
+
+        <section class="recipes">
+        <div class="recipe__list">
+            <app-recipe-list></app-recipe-list>
+        </div>
+        <div class="recipe__details">
+            <router-outlet></router-outlet>
+        </div>
+        </section>

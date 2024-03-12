@@ -1,0 +1,120 @@
+.recipe-details {
+  margin: 4rem auto;
+}
+
+.details__title {
+  color: var(--primary);
+  letter-spacing: 3px;
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+hr {
+  margin-bottom: 5rem;
+}
+
+.details__body {
+  display: grid;
+  gap: 2rem;
+}
+.details__body span {
+  display: none;
+}
+.recipe__img {
+  border-radius: 5px;
+}
+.manage-recipe {
+  position: relative;
+
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.manage-recipe__btn {
+  background-color: var(--dark-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.manage__links {
+  position: absolute;
+  z-index: 999;
+  bottom: -6.5rem;
+  background-color: var(--dark-bg);
+  padding: 1rem;
+  border-radius: 5px;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: var(--transition);
+}
+.open ~ .manage__links {
+  transform: scaleY(1);
+}
+.manage__link {
+  text-transform: capitalize;
+  transition: var(--transition);
+}
+.manage__link:hover {
+  color: var(--primary);
+}
+.recipe__name {
+  position: relative;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  width: max-content;
+  margin-bottom: 1rem;
+}
+.recipe__name::before {
+  content: "";
+  position: absolute;
+  background-color: var(--primary);
+  height: 3px;
+  width: 100%;
+  bottom: -5px;
+}
+.recipe__description,
+.ingredient {
+  letter-spacing: 1px;
+}
+.ingredient {
+  text-transform: capitalize;
+}
+.no-recipe {
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+@media (min-width: 800px) {
+  .details__body {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+  .details__body span {
+    display: inline;
+  }
+  .recipe__img {
+    height: 300px;
+  }
+  .recipe__info span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    padding: 0.25rem;
+    border-radius: 2px;
+    text-transform: capitalize;
+    color: var(--white);
+  }
+  .recipe__name::before {
+    display: none;
+  }
+  .recipe__name,
+  .recipe__description,
+  .recipe__ingredients {
+    display: grid;
+    grid-template-columns: 13ch auto;
+    align-items: start;
+    gap: 1rem;
+  }
+}

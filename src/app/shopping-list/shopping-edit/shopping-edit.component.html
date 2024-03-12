@@ -1,0 +1,61 @@
+<div class="edit-form-container content--center">
+  <form class="form" (ngSubmit)="onListItemSubmit()" #shoppingListForm="ngForm">
+    <div class="form__row">
+      <label for="name" class="form__label">name</label>
+      <input
+        class="form__input"
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="itemName"
+        #name="ngModel"
+        required
+      />
+      <p *ngIf="!name.valid && name.touched" class="form__error">
+        Name is required
+      </p>
+    </div>
+    <div class="form__row">
+      <label for="amount" class="form__label">amount</label>
+      <input
+        class="form__input"
+        type="number"
+        id="amount"
+        name="amount"
+        [(ngModel)]="itemAmount"
+        #amount="ngModel"
+        required
+        min="1"
+      />
+      <p *ngIf="!amount.valid && amount.touched" class="form__error">
+        Amount is required
+      </p>
+    </div>
+    <div class="form__buttons">
+      <button
+        class="btn btn--secondary btn--add"
+        [disabled]="!shoppingListForm.valid"
+      >
+        <!-- <span *ngIf="!shoppingListForm.valid">x</span>
+        <span *ngIf="shoppingListForm.valid && !editMode">add</span>
+        <span *ngIf="shoppingListForm.valid && editMode">update</span> -->
+        {{ !shoppingListForm.valid ? "x" : !editMode ? "add" : "update" }}
+      </button>
+      <button
+        *ngIf="editMode"
+        type="button"
+        (click)="onDelete()"
+        class="btn btn--secondary btn--delete"
+      >
+        delete
+      </button>
+      <button
+        type="button"
+        (click)="onClear()"
+        class="btn btn--secondary btn--clear"
+      >
+        clear
+      </button>
+    </div>
+  </form>
+</div>

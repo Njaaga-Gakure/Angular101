@@ -1,0 +1,19 @@
+.recipe {
+  padding: 1rem;
+  background: var(--dark-bg);
+  border-radius: var(--border-radius-2);
+  text-align: center;
+}
+.recipe__img {
+  height: 250px;
+}
+.recipe__body {
+  padding: 1rem 0;
+}
+
+.recipe__name {
+  text-transform: capitalize;
+  letter-spacing: var(--letter-spacing-2);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}

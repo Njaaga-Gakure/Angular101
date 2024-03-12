@@ -1,0 +1,30 @@
+<nav>
+  <div class="nav--center content--center">
+    <div class="nav__logo">
+      <h5 class="logo__text">recipe<span>Book</span></h5>
+    </div>
+    <ul class="nav__links">
+      <li routerLinkActive="nav__link--active" class="nav__link">
+        <a routerLink="/recipes">recipes</a>
+      </li>
+      <li routerLinkActive="nav__link--active" class="nav__link">
+        <a routerLink="/shopping-list">shopping list</a>
+      </li>
+    </ul>
+    <button class="nav__toggle">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="nav__accordion">
+      <button class="btn nav__btn" appDropdown>
+        manage
+        <mat-icon> arrow_drop_down </mat-icon>
+      </button>
+      <ul class="manage__links">
+        <li class="manage__link"><a (click)="onSaveRecipes()">save data</a></li>
+        <li class="manage__link" (click)="onFetchRecipes()">
+          <a>fetch data</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

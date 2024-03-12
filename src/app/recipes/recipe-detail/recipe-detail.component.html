@@ -1,0 +1,57 @@
+<div class="recipe-details content--center">
+  <h3 class="details__title">recipe details</h3>
+  <hr />
+
+  @if(recipe) {
+  <div class="details__body">
+    <img [src]="recipe.imagePath" [alt]="recipe.name" class="recipe__img" />
+    <div class="recipe__info">
+      <div class="manage-recipe">
+        <button class="btn manage-recipe__btn" appDropdown>
+          manage
+          <mat-icon> arrow_drop_down </mat-icon>
+        </button>
+        <ul class="manage__links">
+          <li
+            class="manage__link"
+            (click)="addIngredientsToShoppingList(recipe.ingredients)"
+          >
+            <a>To shopping list</a>
+          </li>
+          <li class="manage__link">
+            <a [routerLink]="['/recipes', recipeId, 'edit']">edit recipe</a>
+          </li>
+          <li class="manage__link">
+            <a (click)="onDelete()">delete recipe</a>
+          </li>
+        </ul>
+      </div>
+      <p class="recipe__name">
+        <span>name</span>
+        {{ recipe.name }}
+      </p>
+      <p class="recipe__description">
+        <span>description</span>
+        {{ recipe.description }}
+      </p>
+      <div class="recipe__ingredients">
+        <span>ingredients</span>
+        <div class="ingredients__list">
+          <p
+            class="ingredient"
+            *ngFor="let ingredient of recipe.ingredients; let i = index"
+          >
+            {{ i + 1 }}) {{ ingredient.name }} ({{ ingredient.amount }})
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  } @else {
+  <p class="no-recipe" #noRecipe>
+    Recipe of id: {{ recipeId }} does not exist... :(
+  </p>
+
+  }
+</div>

@@ -1,0 +1,112 @@
+<div class="form-container content--center">
+  <form class="form" (ngSubmit)="onSubmit()" [formGroup]="recipeForm">
+    <div class="form__buttons">
+      <button
+        type="submit"
+        class="btn btn--secondary btn--save"
+        [disabled]="!recipeForm.valid"
+      >
+        {{ !recipeForm.valid ? "x" : "save" }}
+      </button>
+      <button
+        (click)="onCancel()"
+        type="button"
+        class="btn btn--secondary btn--cancel"
+      >
+        cancel
+      </button>
+    </div>
+    <div class="form__row">
+      <label for="name" class="form__label">name</label>
+      <input class="form__input" type="text" id="name" formControlName="name" />
+      <p
+        *ngIf="!recipeForm.get('name').valid && recipeForm.get('name').touched"
+        class="form__error"
+      >
+        Name is required
+      </p>
+    </div>
+    <div class="form__row">
+      <label for="image-path" class="form__label">image path</label>
+      <input
+        class="form__input"
+        type="text"
+        id="image-path"
+        formControlName="imagePath"
+      />
+      <p
+        *ngIf="
+          !recipeForm.get('imagePath').valid &&
+          recipeForm.get('imagePath').touched
+        "
+        class="form__error"
+      >
+        Image path is required
+      </p>
+    </div>
+    <div class="form__row">
+      <label for="description" class="form__label">description</label>
+      <textarea
+        id="description"
+        class="form__textarea"
+        rows="6"
+        formControlName="description"
+      ></textarea>
+      <p
+        *ngIf="
+          !recipeForm.get('description').valid &&
+          recipeForm.get('description').touched
+        "
+        class="form__error"
+      >
+        Description path is required
+      </p>
+    </div>
+
+    <div class="form__row" formArrayName="ingredients">
+      <span class="form__label">ingredient(s)</span>
+      <div
+        class="ingredients__row"
+        *ngFor="let group of getGroups(); let i = index"
+        [formGroupName]="i"
+      >
+        <input
+          formControlName="name"
+          type="text"
+          class="form__input"
+          placeholder="Name"
+        />
+        <input
+          formControlName="amount"
+          type="number"
+          class="form__input"
+          placeholder="Amount"
+          min="1"
+        />
+        <button
+          type="button"
+          style="padding: 0.25rem 1rem"
+          class="btn btn--secondary btn--cancel"
+          (click)="onRemoveIngredient(i)"
+        >
+          x
+        </button>
+      </div>
+      <div
+        [ngStyle]="{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '1rem'
+        }"
+      >
+        <button
+          type="button"
+          class="btn btn--secondary btn--save"
+          (click)="onAddIngredient()"
+        >
+          add ingredient
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

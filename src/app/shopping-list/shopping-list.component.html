@@ -1,0 +1,18 @@
+<section class="shopping-list content--center">
+  <app-shopping-edit></app-shopping-edit>
+  <h5 class="shopping-list__title">shopping list</h5>
+  <hr />
+  @if(ingredients.length === 0){
+  <p class="not-found">no item in shopping list... :(</p>
+  } @else{
+  <ul class="shopping-list">
+    <li
+      (click)="onEdit(i)"
+      style="cursor: pointer"
+      *ngFor="let ingredient of ingredients; let i = index"
+    >
+      {{ i + 1 }}) {{ ingredient.name }} ({{ ingredient.amount }})
+    </li>
+  </ul>
+  }
+</section>

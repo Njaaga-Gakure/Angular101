@@ -1,0 +1,12 @@
+.shopping-list {
+  margin-top: 2rem;
+  letter-spacing: 2px;
+}
+
+.shopping-list__title {
+  color: var(--primary);
+  letter-spacing: 3px;
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}

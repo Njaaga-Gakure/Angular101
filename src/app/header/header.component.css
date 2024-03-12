@@ -1,0 +1,102 @@
+.nav--center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 3rem;
+}
+.logo__text {
+  text-transform: capitalize;
+  letter-spacing: var(--letter-spacing-2);
+}
+.logo__text span {
+  color: var(--primary);
+}
+.nav__links,
+.nav__btn,
+.nav__accordion {
+  display: none;
+}
+
+.nav__toggle {
+  background: transparent;
+  border: none;
+  color: inherit;
+  text-transform: capitalize;
+  letter-spacing: var(--letter-spacing-2);
+}
+.nav__toggle:hover {
+  color: var(--primary);
+}
+
+@media (min-width: 800px) {
+  .nav__toggle {
+    display: none;
+  }
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    letter-spacing: var(--letter-spacing-2);
+    font-size: 0.8rem;
+    transition: var(--transition);
+  }
+  .nav__link--active::before {
+    content: "";
+    position: absolute;
+    background-color: var(--primary);
+    height: 3px;
+    width: 100%;
+    bottom: -5px;
+  }
+
+  .nav__link:hover {
+    color: var(--primary);
+  }
+  .nav__accordion {
+    position: relative;
+    display: block;
+    /* border: 5px solid goldenrod; */
+  }
+  .manage__links {
+    position: absolute;
+    /* border: 1px solid magenta; */
+    bottom: -4.5rem;
+    left: 1.5rem;
+    right: 0rem;
+    background-color: var(--dark-bg);
+    padding: 1rem;
+    border-radius: 5px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: var(--transition);
+  }
+  .open ~ .manage__links {
+    transform: scaleY(1);
+  }
+  .manage__link {
+    text-transform: capitalize;
+    transition: var(--transition);
+  }
+  .manage__link:hover {
+    color: var(--primary);
+  }
+  .nav__btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: inherit;
+    text-transform: capitalize;
+    letter-spacing: var(--letter-spacing-2);
+  }
+  .nav__btn:hover {
+    color: var(--primary);
+  }
+}

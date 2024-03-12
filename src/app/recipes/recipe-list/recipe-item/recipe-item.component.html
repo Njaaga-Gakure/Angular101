@@ -1,0 +1,11 @@
+<article class="recipe">
+  <img [src]="recipe.imagePath" [alt]="recipe.name" class="recipe__img" />
+  <div class="recipe__body">
+    <h4 class="recipe__name">{{ recipe.name }}</h4>
+    <div class="recipe__footer">
+      <button class="btn btn--secondary" (click)="onRecipeClick()">
+        more details
+      </button>
+    </div>
+  </div>
+</article>
